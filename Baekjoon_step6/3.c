@@ -12,21 +12,25 @@ int main()
 	for (i = 0; i < try; i++)
 	{
 		scanf("%d %d %d", &a, &b, &m);
-		for (j = a; j <= m; j++)
+		if (a == m) NULL;
+		else
 		{
-			basket[1][j] = basket[0][j]; //앞부분 저장
-		}
-		for (j = m; j <= b; j++)
-		{
+			for (j = a; j < m; j++)
+			{
+				basket[1][j] = basket[0][j]; //앞부분 저장
+			}
 			h = a;
-			basket[0][a] = basket[0][j]; //미들~끝 앞(a)으로 보내기
-			h++;
-		}
-		for (j = a; j <= m; j++)
-		{
-			h = m;
-			basket[0][m] = basket[1][j]; //앞~미들 미들(m)으로 보내기
-			h++;
+			for (j = m; j <= b; j++)
+			{
+				basket[0][h] = basket[0][j]; //미들~끝 앞(a)으로 보내기
+				h++;
+			}
+			h = (b - m + 1) + a;
+			for (j = a; j < m; j++)
+			{
+				basket[0][h] = basket[1][j]; //앞~미들 미들(m)으로 보내기
+				h++;
+			}
 		}
 	}
 	for (i = 1; i <= n; i++)
